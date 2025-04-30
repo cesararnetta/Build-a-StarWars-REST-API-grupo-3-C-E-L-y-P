@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User
+from models import db, Planet, Favorite
 #from models import Person
 
 app = Flask(__name__)
@@ -36,14 +36,33 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
-@app.route('/user', methods=['GET'])
-def handle_hello():
 
-    response_body = {
-        "msg": "Hello, this is your GET /user response "
-    }
+# [GET] /planets Pablo
 
-    return jsonify(response_body), 200
+@app.route('/planets', methods=['GET'])
+def get_all_planets():
+    raw_planets_list = Planet.query.all()
+    planets = [planet.serialize_with_connections() for planet in raw_planets_list]
+
+    return jsonify(planets), 200
+
+
+
+# [DELETE] /favorite/planet/<int:planet_id> Pablo
+
+@app.route('/favorite/planet/<int:planet_id>', methods=['DELETE'])
+def delete_fav_planet(planet_id):
+    favorite = Favorite.query.filter_by(planets_id=planet_id).first()
+
+    if favorite is None:
+        return jsonify({"error": "Favorite planet not found"}), 404
+
+    db.session.delete(favorite)
+    db.session.commit()
+
+    return jsonify({"error": f"Favorite planet {planet_id} deleted"}), 200
+
+
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
