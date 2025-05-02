@@ -42,7 +42,7 @@ def sitemap():
 @app.route('/planets', methods=['GET'])
 def get_all_planets():
     raw_planets_list = Planet.query.all()
-    planets = [planet.serialize_with_connections() for planet in raw_planets_list]
+    planets = [planet.serialize() for planet in raw_planets_list]
 
     return jsonify(planets), 200
 
