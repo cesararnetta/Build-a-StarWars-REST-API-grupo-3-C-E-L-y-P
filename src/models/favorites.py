@@ -1,8 +1,10 @@
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from sqlalchemy import Integer, ForeignKey, CheckConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 from models import db
 
+if TYPE_CHECKING:
+    from models import User, Planet, Character
 
 class Favorite(db.Model):
     __tablename__ = "favorites"

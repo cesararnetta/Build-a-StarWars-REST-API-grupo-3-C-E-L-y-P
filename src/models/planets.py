@@ -1,6 +1,12 @@
 from sqlalchemy import String, Integer, ForeignKey
+from typing import TYPE_CHECKING
 from sqlalchemy.orm import Mapped, mapped_column
 from models import db
+
+if TYPE_CHECKING:
+    from .characters import Character
+    from .favorites import Favorite
+    from .users import User
 
 
 class Planet(db.Model):
@@ -19,6 +25,7 @@ class Planet(db.Model):
 
     def serialize(self):
         return {
+            "id" : self.planets_id,
             "name" : self.planets_id,
             "population" : self.population,
             "terrain" : self.terrain

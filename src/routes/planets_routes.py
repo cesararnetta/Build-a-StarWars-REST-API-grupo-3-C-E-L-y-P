@@ -7,7 +7,8 @@ planets_bp = Blueprint('planets', __name__, url_prefix='/planets')
 def get_planets():
     raw_planets_list = Planet.get_all_planets()
     planets = [planet.serialize() for planet in raw_planets_list]
-    return jsonify({"message": "Lista de planetas"})
+    return planets, 200
+# jsonify({"message": "Lista de planetas"})
 
 # @planets_bp.route('/<int:planet_id>', methods=['GET'])
 # def get_planet_by_id(planet_id):
