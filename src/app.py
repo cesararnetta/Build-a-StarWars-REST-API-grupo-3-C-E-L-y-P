@@ -50,19 +50,6 @@ def sitemap():
     return generate_sitemap(app)
 
 
-@app.route('/user', methods=['GET'])
-def handle_hello():
-
-#  codigo de Eduardo para obtener los favorites by user from its ID
-# @app.route('/users/favorites/<int:user_id>', methods=['GET'])
-# def get_all_favorites(user_id):
-#     raw_list_favorite = Favorite.query.filter_by(users_id=user_id).first()
-#     list_favorite = [favorite.serialize_with_relations()
-#                      for favorite in raw_list_favorite]
-#     return jsonify(list_favorite)
-
-# this only runs if `$ python src/app.py` is executed
-
 
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
