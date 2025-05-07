@@ -53,34 +53,6 @@ def sitemap():
 @app.route('/user', methods=['GET'])
 def handle_hello():
 
-# [GET] /planets Pablo
-
-@app.route('/planets', methods=['GET'])
-def get_all_planets():
-    raw_planets_list = Planet.query.all()
-    planets = [planet.serialize() for planet in raw_planets_list]
-
-    return jsonify(planets), 200
-
-
-
-# [DELETE] /favorite/planet/<int:planet_id> Pablo
-
-@app.route('/favorite/planet/<int:planet_id>', methods=['DELETE'])
-def delete_fav_planet(planet_id):
-    favorite = Favorite.query.filter_by(planets_id=planet_id).first()
-
-    if favorite is None:
-        return jsonify({"error": "Favorite planet not found"}), 404
-
-    db.session.delete(favorite)
-    db.session.commit()
-
-    return jsonify({"error": f"Favorite planet {planet_id} deleted"}), 200
-
-
-
-
 #  codigo de Eduardo para obtener los favorites by user from its ID
 # @app.route('/users/favorites/<int:user_id>', methods=['GET'])
 # def get_all_favorites(user_id):
