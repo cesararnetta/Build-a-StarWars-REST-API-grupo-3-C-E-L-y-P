@@ -21,8 +21,7 @@ class Character(db.Model):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=func.now())
     update_at: Mapped[datetime] = mapped_column(
         DateTime, default=func.now(), onupdate=func.now())
-    planets: Mapped[List["Planet"]] = relationship("Planet", back_populates = "character")
-    favorites: Mapped[List["Favorite"]] = relationship("Favorite", back_populates = "character")
+    vx
     
     def serialize(self):
         return {
