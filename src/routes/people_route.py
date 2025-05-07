@@ -2,10 +2,8 @@ from flask import jsonify, Blueprint
 from models import Character
 
 people_bp = Blueprint('people_custom', __name__, url_prefix='/people')
-print(__name__)
 
 # [GET] /people
-
 
 @people_bp.route('/', methods=['GET'])
 def get_all_people():
