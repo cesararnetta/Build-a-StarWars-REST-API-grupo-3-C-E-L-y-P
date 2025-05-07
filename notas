@@ -1,0 +1,56 @@
+# @app.route('/favorite/planet/<int:planet_id>', methods=['POST'])
+# def add_favorite(planet_id):
+#     data_request = request.get_json()
+#     print(data_request)
+#     if "users_id" not in data_request or "planets_id" not in data_request:
+#         return jsonify({"error": "Es obligatorio que en el body del post estén los campos: users_id y planets_id"}), 400
+#     # planets_id = data_request["planets_id"]
+#     planets = Planet.query.get(planet_id)
+#     print(planets)
+#     if not planets:
+#         return jsonify({"error": "No se ha encontrado planets_id"}), 400
+#     users_id = data_request["users_id"]
+#     users = User.query.get(users_id)
+#     print(users)
+#     if not users:
+#         return jsonify({"error": "No se ha encontrado users_id"}), 400
+
+#     new_favorite = Favorite(
+#         users_id=users_id,
+#         planets_id=planet_id,
+#         characters_id=None
+#     )
+
+#     try:
+#         db.session.add(new_favorite)
+#         db.session.commit()
+#         return jsonify({"message": "Favorite añadido"})
+#     except Exception as e:
+#         db.session.rollback()
+#         print("Error", e)
+#         return jsonify({"error": "No se ha agregado el favorite"})
+
+#     return "ok", 200
+
+
+
+
+# Distribución de los trabajos
+# [GET] /people César
+# [POST] /favorite/planet/<int:planet_id> César
+
+
+# [GET] /people/<int:people_id>  Eduardo
+# [GET] /users/favorites Eduardo
+
+# [GET] /planets Pablo
+# [DELETE] /favorite/planet/<int:planet_id> Pablo
+
+# [GET] /planets/<int:planet_id> Ladislao
+# [GET] /users Ladislao
+
+
+# Todos
+
+# [POST] /favorite/people/<int:people_id>
+# [DELETE] /favorite/people/<int:people_id>
