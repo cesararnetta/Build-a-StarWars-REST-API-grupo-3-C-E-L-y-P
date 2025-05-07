@@ -8,16 +8,10 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-<<<<<<< HEAD
-from models import db,  Character, User, Favorite, Planet
-from routes import user_bp, character_bp
-# from models import Person
-=======
 from models import db, Character, Planet, User, Favorite
 from routes import favorite_bp, people_bp, planets_bp, user_bp
 # from models import Person
 
->>>>>>> origin/main
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -42,11 +36,6 @@ setup_admin(app)
 
 
 # Handle/serialize errors like a JSON object
-<<<<<<< HEAD
-app.register_blueprint(user_bp)
-app.register_blueprint(character_bp)
-=======
->>>>>>> origin/main
 
 
 @app.errorhandler(APIException)
@@ -59,20 +48,6 @@ def handle_invalid_usage(error):
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
-
-<<<<<<< HEAD
-=======
-
-@app.route('/user', methods=['GET'])
-def handle_hello():
->>>>>>> origin/main
-
-@app.route('/users/favorites/<int:user_id>', methods=['GET'])
-def get_all_favorites(user_id):
-    raw_list_favorite = Favorite.query.filter_by(users_id=user_id).first()
-    list_favorite = [favorite.serialize_with_relations()
-                     for favorite in raw_list_favorite]
-    return jsonify(list_favorite)
 
 
 @app.route('/character/<int:id>', methods=['GET'])
@@ -91,7 +66,6 @@ def get_character_id():
     return jsonify(character_data), 200
 
 
-
 #  codigo de Eduardo para obtener los favorites by user from its ID
 # @app.route('/users/favorites/<int:user_id>', methods=['GET'])
 # def get_all_favorites(user_id):
@@ -101,7 +75,6 @@ def get_character_id():
 #     return jsonify(list_favorite)
 
 # this only runs if `$ python src/app.py` is executed
-
 
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
