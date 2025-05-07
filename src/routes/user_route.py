@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify
 from models import db, Favorite, User
 
 # [GET] /users/favorites Get all the favorites that belong to the current user.
+print(__name__)
 
 user_bp = Blueprint(
     'user_custom', __name__, url_prefix='/users')

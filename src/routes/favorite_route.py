@@ -4,7 +4,7 @@ from models import db, Planet, User, Favorite, Character
 favorite_bp = Blueprint('favorite_custom', __name__, url_prefix='/favorite')
 
 # [POST] /favorite/planet/<int:planet_id> César
-
+print(__name__)
 
 @favorite_bp.route('/planet/<int:planet_id>', methods=['POST'])
 def add_favorite(planet_id):

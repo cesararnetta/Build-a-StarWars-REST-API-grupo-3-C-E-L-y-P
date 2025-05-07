@@ -50,17 +50,6 @@ def sitemap():
     return generate_sitemap(app)
 
 
-@app.route('/user', methods=['GET'])
-def handle_hello():
-
-@app.route('/planets/<int:planet_id>', methods=['GET'])
-def get_planet_by_id(planet_id):
-    planet = Planet.query.get(planet_id)
-    if planet is None:
-        return jsonify({"error": "Planet not found"}), 404
-    return jsonify(planet.serialize()), 200
-
-
 #  codigo de Eduardo para obtener los favorites by user from its ID
 # @app.route('/users/favorites/<int:user_id>', methods=['GET'])
 # def get_all_favorites(user_id):
