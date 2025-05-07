@@ -18,7 +18,7 @@ def get_all_people():
 def get_character_id(people_id):
     character = Character.query.get(people_id)
     if character is None:
-        return ('Character not found', status_code == 404)
+        return jsonify({'error':'Character not found'}), 404
     character_data = {
         "id": character.characters_id,
         "name": character.name,
