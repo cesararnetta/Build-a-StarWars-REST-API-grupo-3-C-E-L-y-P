@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 
-from models import db, Favorite
+from models import db, Favorite, User
 
 # [GET] /users/favorites Get all the favorites that belong to the current user.
 
@@ -16,3 +16,9 @@ def get_all_favorites(user_id):
     list_favorite = [favorite.serialize_with_relations()
                      for favorite in raw_list_favorite]
     return jsonify({"user_favorites": list_favorite})
+
+
+@user_bp.route('/', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    return jsonify([user.serialize() for user in users]), 200

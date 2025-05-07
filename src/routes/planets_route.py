@@ -10,3 +10,9 @@ def get_planets():
     planets = [planet.serialize() for planet in raw_planets_list]
     return planets, 200
 
+@planets_bp.route('/<int:planet_id>', methods=['GET'])
+def get_planet_by_id(planet_id):
+    planet = Planet.query.get(planet_id)
+    if planet is None:
+        return jsonify({"error": "Planet not found"}), 404
+    return jsonify(planet.serialize()), 200

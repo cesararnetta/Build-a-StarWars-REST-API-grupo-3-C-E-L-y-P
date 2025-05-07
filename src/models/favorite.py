@@ -33,7 +33,7 @@ class Favorite(db.Model):
         "User", back_populates="favorites", foreign_keys=[users_id])
     character: Mapped["Character"] = relationship(
         "Character", back_populates="favorites", foreign_keys=[characters_id])
-    planet: Mapped["Planet"] = relationship(
+    planets: Mapped["Planet"] = relationship(
         "Planet", back_populates="favorites", foreign_keys=[planets_id])
 
     def serialize(self):

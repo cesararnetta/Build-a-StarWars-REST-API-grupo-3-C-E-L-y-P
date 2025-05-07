@@ -19,7 +19,7 @@ class Planet(db.Model):
         ForeignKey('characters.characters_id'), nullable=True)
     character: Mapped["Character"] = relationship(
         "Character", back_populates="planets", foreign_keys=[who_live_here])
-    favorites: Mapped[List["Favorite"]] = relationship("Favorite", back_populates = "planet")
+    favorites: Mapped[List["Favorite"]] = relationship("Favorite", back_populates = "planets")
 
     def serialize(self):
         return {
